@@ -8,29 +8,29 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  Widget _searchBar() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: 'Search',
+          prefixIcon: const Icon(Icons.search, color: Colors.grey),
+          suffixIcon: const Icon(Icons.menu, color: Colors.grey),
+          contentPadding: const EdgeInsets.all(20)
+        ),
+      ),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        elevation: 1,
-      ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
-            Text("Search Github Users"),
-            TextField(
-              decoration: InputDecoration(
-                filled: true,
-                hintText: "search",
-                prefixIcon: Icon(Icons.search),
-                prefixIconColor: Colors.grey
-              ),
-            )
+            _searchBar(),
           ],
         ),
       ),
