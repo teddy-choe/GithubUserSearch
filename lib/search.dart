@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:search_github/provider/search_provider.dart';
+import 'package:search_github/search_list.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -12,6 +15,11 @@ class _SearchPageState extends State<SearchPage> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextField(
+        onSubmitted: (value) {
+          context
+              .read<SearchProvider>()
+              .search(value);
+        },
         decoration: InputDecoration(
           hintText: 'Search',
           prefixIcon: const Icon(Icons.search, color: Colors.grey),
@@ -28,9 +36,10 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(16),
-        child: ListView(
+        child: Column(
           children: [
             _searchBar(),
+            SearchListScreen()
           ],
         ),
       ),
