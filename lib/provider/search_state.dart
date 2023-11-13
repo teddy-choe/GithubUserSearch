@@ -3,15 +3,15 @@ import '../model/User.dart';
 class SearchState {
   final int totalCount;
   final bool incompleteResult;
-  final List<User?> users;
+  final List<User> users;
 
   factory SearchState.fromJson(Map json) {
+    var items = (json['items'] as List);
+    items.removeWhere((element) => element == null);
     return SearchState(
         totalCount: json['total_count'],
         incompleteResult: json['incomplete_results'],
-        users: (json['items'] as List)
-            .map((e) => e == null ? null : User.fromJson(e))
-            .toList());
+        users: items.map((e) => User.fromJson(e)).toList());
   }
 
   SearchState(
