@@ -20,11 +20,11 @@ class _SearchPageState extends State<SearchPage> {
               .read<SearchProvider>()
               .search(value);
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           hintText: 'Search',
-          prefixIcon: const Icon(Icons.search, color: Colors.grey),
-          suffixIcon: const Icon(Icons.menu, color: Colors.grey),
-          contentPadding: const EdgeInsets.all(20)
+          prefixIcon: Icon(Icons.search, color: Colors.grey),
+          suffixIcon: Icon(Icons.menu, color: Colors.grey),
+          contentPadding: EdgeInsets.all(20)
         ),
       ),
     );
