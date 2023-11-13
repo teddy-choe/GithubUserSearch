@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:search_github/provider/search_provider.dart';
 
-import 'model/User.dart';
+import '../model/User.dart';
 
 class SearchListScreen extends StatelessWidget {
   const SearchListScreen({super.key});

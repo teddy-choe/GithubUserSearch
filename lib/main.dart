@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:search_github/provider/search_provider.dart';
-import 'package:search_github/search.dart';
+import 'package:search_github/page/search_page.dart';
 
 void main() {
   runApp(const MyApp());

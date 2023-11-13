@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:search_github/provider/search_provider.dart';
-import 'package:search_github/search_list.dart';
+import 'package:search_github/page/search_list.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -21,7 +21,7 @@ class _SearchPageState extends State<SearchPage> {
               .search(value);
         },
         decoration: const InputDecoration(
-          hintText: 'Search',
+          hintText: 'search user',
           prefixIcon: Icon(Icons.search, color: Colors.grey),
           suffixIcon: Icon(Icons.menu, color: Colors.grey),
           contentPadding: EdgeInsets.all(20)
