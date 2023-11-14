@@ -8,25 +8,24 @@ import 'package:search_github/repository/search_repository.dart';
  * 검색 화면에서 사용
  */
 class SearchProvider with ChangeNotifier {
-  SearchState? _state;
+  SearchState _state = SearchState();
   var logger = Logger();
-  bool isLoading = false;
 
   final SearchReposiory repository = SearchReposiory();
 
-  SearchState? get state => _state;
+  SearchState get state => _state;
 
   search(String query) async {
-    isLoading = true;
+    state.isLoading = true;
     notifyListeners();
 
     await repository.search(query).then((value) => {
       _state = SearchState.fromJson(json.decode(value.body))
     });
 
-    logger.d(_state?.totalCount);
+    logger.d(_state.totalCount);
 
-    isLoading = false;
+    state.isLoading = false;
     notifyListeners();
   }
 }

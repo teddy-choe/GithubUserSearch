@@ -1,6 +1,7 @@
 import '../model/User.dart';
 
 class SearchState {
+  bool isLoading = false;
   final int totalCount;
   final bool incompleteResult;
   final List<User> users;
@@ -14,8 +15,9 @@ class SearchState {
         users: items.map((e) => User.fromJson(e)).toList());
   }
 
-  SearchState(
-      {required this.totalCount,
-      required this.incompleteResult,
-      required this.users});
+  SearchState({
+    this.totalCount = 0,
+    this.incompleteResult = false,
+    this.users = const []
+});
 }

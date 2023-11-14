@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:search_github/page/search_list_item.dart';
 import 'package:search_github/provider/search_provider.dart';
-import 'package:search_github/page/search_list.dart';
+
+import '../model/User.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -15,31 +17,44 @@ class _SearchPageState extends State<SearchPage> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: TextField(
-        onSubmitted: (value) {
-          context
-              .read<SearchProvider>()
-              .search(value);
-        },
-        decoration: const InputDecoration(
-          hintText: 'search user',
-          prefixIcon: Icon(Icons.search, color: Colors.grey),
-          suffixIcon: Icon(Icons.menu, color: Colors.grey),
-          contentPadding: EdgeInsets.all(20)
-        ),
-      ),
+          onSubmitted: (value) {
+            context.read<SearchProvider>().search(value);
+          },
+          decoration: InputDecoration(
+              hintText: 'search user',
+              prefixIcon: Icon(Icons.search, color: Colors.grey),
+              contentPadding: EdgeInsets.all(20),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: const BorderSide(color: Colors.grey, width: 1.0),
+              ))),
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<SearchProvider>().state;
+
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
+            SizedBox(height: 16),
             _searchBar(),
-            SearchListScreen()
+            state.isLoading
+                ? Expanded(
+                    child: const Center(child: CircularProgressIndicator()))
+                : state.totalCount == 0
+                    ? Expanded(child: const Center(child: Text("유저를 검색해주세요.")))
+                    : Expanded(
+                        child: ListView.builder(
+                            itemCount: state.totalCount,
+                            itemBuilder: (context, index) {
+                              User user = state.users[index];
+                              return SearchListItem(user: user);
+                            }),
+                      )
           ],
         ),
       ),
