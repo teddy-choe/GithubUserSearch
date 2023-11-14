@@ -1,29 +1,19 @@
-class User {
-  final int id;
-  final String login;
-  final String avatarUrl;
-  final String htmlUrl;
-  final String reposUrl;
-  final double score;
-  final String starredUrl;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  factory User.fromJson(Map json) {
-    return User(
-        id: json['id'],
-        login: json['login'],
-        avatarUrl: json['avatar_url'],
-        htmlUrl: json['html_url'],
-        reposUrl: json['repos_url'],
-        score: json['score'],
-        starredUrl: json['starred_url']);
-  }
+part 'user.freezed.dart';
 
-  User(
-      {required this.login,
-      required this.id,
-      required this.avatarUrl,
-      required this.htmlUrl,
-      required this.reposUrl,
-      required this.score,
-      required this.starredUrl});
+part 'user.g.dart';
+
+@freezed
+class User with _$User {
+  const factory User(
+      {@Default('') @JsonKey(name: 'login') String login,
+      @Default(0) @JsonKey(name: 'id') int id,
+      @Default('') @JsonKey(name: 'avatar_url') String avatarUrl,
+      @Default('') @JsonKey(name: 'html_url') String htmlUrl,
+      @Default('') @JsonKey(name: 'repos_url') String reposUrl,
+      @Default(0) @JsonKey(name: 'score') double score,
+      @Default('') @JsonKey(name: 'starred_url') String starredUrl}) = _User;
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

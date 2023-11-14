@@ -1,23 +1,19 @@
-import '../model/User.dart';
+import '../model/user.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class SearchState {
-  bool isLoading = false;
-  final int totalCount;
-  final bool incompleteResult;
-  final List<User> users;
+part 'search_state.freezed.dart';
+part 'search_state.g.dart';
 
-  factory SearchState.fromJson(Map json) {
-    var items = (json['items'] as List);
-    items.removeWhere((element) => element == null);
-    return SearchState(
-        totalCount: json['total_count'],
-        incompleteResult: json['incomplete_results'],
-        users: items.map((e) => User.fromJson(e)).toList());
-  }
+@freezed
+class SearchState with _$SearchState {
+  const factory SearchState({
+    @Default(false) bool isLoading,
+    @Default("") String query,
+    @Default(1) int currentPage,
+    @Default(0) @JsonKey(name: 'total_count') int totalCount,
+    @Default(false) @JsonKey(name: 'incomplete_result') bool incompleteResult,
+    @Default(<User>[]) @JsonKey(name: 'items') List<User> users,
+}) = _SearchState;
 
-  SearchState({
-    this.totalCount = 0,
-    this.incompleteResult = false,
-    this.users = const []
-});
+  factory SearchState.fromJson(Map<String, dynamic> json) => _$SearchStateFromJson(json);
 }

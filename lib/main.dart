@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
               create: (context) => RepoProvider())
         ],
         child: MaterialApp(
-            title: 'Flutter Demo',
+            title: 'Search Github',
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
               useMaterial3: true,
             ),
             home: SearchPage()));

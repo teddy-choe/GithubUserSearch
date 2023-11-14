@@ -1,5 +1,3 @@
-import 'package:search_github/model/User.dart';
-
 class Repo {
   final int id;
   final String name;

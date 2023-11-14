@@ -15,17 +15,33 @@ class SearchProvider with ChangeNotifier {
 
   SearchState get state => _state;
 
-  search(String query) async {
-    state.isLoading = true;
-    notifyListeners();
+  search(String query) {
+    _state = _state.copyWith(query: query);
+    fetchPage(1);
+  }
 
-    await repository.search(query).then((value) => {
-      _state = SearchState.fromJson(json.decode(value.body))
-    });
+  fetchPage(int page) async {
+    logger.d("load more");
+    logger.d("current Page: ${state.currentPage}");
+    if (_state.query == "") {
+      logger.d("query is empty");
+    } else {
+      _state = _state.copyWith(isLoading: true);
+      notifyListeners();
 
-    logger.d(_state.totalCount);
+      final result = await _getSearchState(page);
+      _state = _state.copyWith(
+          currentPage: _state.currentPage + 1,
+          isLoading: false,
+          totalCount: result.totalCount,
+          incompleteResult: result.incompleteResult,
+          users: _state.users + result.users);
+      notifyListeners();
+    }
+  }
 
-    state.isLoading = false;
-    notifyListeners();
+  Future<SearchState> _getSearchState(int page) async {
+    final response = await repository.search(_state.query, page);
+    return SearchState.fromJson(json.decode(response.body));
   }
 }
