@@ -14,12 +14,14 @@ class RepoPage extends StatefulWidget {
 
 class _RepoPageState extends State<RepoPage> {
   PreferredSizeWidget appBar(BuildContext context) {
+    final state = context.watch<RepoProvider>().state;
+
     return AppBar(
       leading: IconButton(
         icon: const Icon(Icons.arrow_back, color: Colors.black),
         onPressed: () => Navigator.pop(context),
       ),
-      title: Text("${widget.repoName}"),
+      title: Text("${state.repo?.name ?? "검색 중"} "),
     );
   }
 
@@ -54,21 +56,23 @@ class _RepoPageState extends State<RepoPage> {
                           "The First Repository",
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          state.repo!.name,
+                          state.repo!.fullName,
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(color: Colors.black),
+                          style: const TextStyle(
+                              fontSize: 12, color: Colors.black),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           state.repo!.description,
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(color: Colors.black54),
+                          style: const TextStyle(
+                              fontSize: 12, color: Colors.black54),
                         )
                       ],
                     ),

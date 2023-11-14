@@ -1,12 +1,16 @@
 import 'package:search_github/model/repo.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class RepoState {
-  final Repo? repo;
-  bool isLoading = true;
+part 'repo_state.freezed.dart';
+part 'repo_state.g.dart';
 
-  RepoState(this.repo);
+@freezed
+class RepoState with _$RepoState {
+  const factory RepoState({
+    @Default(null) Repo? repo,
+    @Default(true) bool isLoading,
+    @Default(false) bool isNetworkError
+}) = _RepoState;
 
-  factory RepoState.fromJson(Map json) {
-    return RepoState(Repo.fromJson(json));
-  }
+  factory RepoState.fromJson(Map<String, dynamic> json) => _$RepoStateFromJson(json);
 }

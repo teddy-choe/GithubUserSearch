@@ -2,12 +2,12 @@
 An app that displays information using the Github Search API.
 
 ### Feature
-First Page: List of users by search -> Infinite Scroll, REST api call
-Second Page: The first repository of the clicked user's repository list -> REST api call
+- First Page: List of users by search -> Infinite Scroll, REST api call
+- Second Page: The first repository of the clicked user's repository list -> REST api call
 
 ### Environment
-Flutter : 3.13.9
-Dart : 3.1.5
+- Flutter : 3.13.9
+- Dart : 3.1.5
 
 ### Tech tools
 - State Management : [Provider (Flutter Favorite)](https://pub.dev/packages/provider)

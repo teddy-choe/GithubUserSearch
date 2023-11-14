@@ -1,18 +1,16 @@
-class Repo {
-  final int id;
-  final String name;
-  final String fullName;
-  final String description;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  Repo(
-      {required this.id,
-      required this.name,
-      required this.fullName,
-      required this.description});
+part 'repo.freezed.dart';
+part 'repo.g.dart';
 
-  Repo.fromJson(Map json)
-      : id = json['id'],
-        name = json['name'],
-        fullName = json['full_name'],
-        description = json['description'];
+@freezed
+class Repo with _$Repo {
+  const factory Repo({
+    @Default(0) @JsonKey(name: 'id') int id,
+    @Default("") @JsonKey(name: 'name') String name,
+    @Default("") @JsonKey(name: 'full_name') String fullName,
+    @Default("") @JsonKey(name: 'description') String description
+}) = _Repo;
+
+  factory Repo.fromJson(Map<String, dynamic> json) => _$RepoFromJson(json);
 }
