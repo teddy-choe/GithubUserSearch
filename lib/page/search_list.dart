@@ -13,11 +13,11 @@ class SearchListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SearchProvider>(builder: (context, provider, child) {
       if (provider.isLoading == true) {
-        return const Center(child: CircularProgressIndicator());
+        return Expanded(child: const Center(child: CircularProgressIndicator()));
       }
 
       if (provider.state == null) {
-        return const Center(child: Text("유저를 검색해주세요."));
+        return Expanded(child: const Center(child: Text("유저를 검색해주세요.")));
       }
 
       return Expanded(
@@ -30,11 +30,10 @@ class SearchListScreen extends StatelessWidget {
                 title: Text(user.login),
                 subtitle: Text(user.reposUrl),
                 onTap: () {
-                  Navigator.push(
-                      context,
+                  Navigator.of(context).push(
                       MaterialPageRoute(
                           builder: (context) =>
-                              RepoPage(userName: user.login)));
+                              RepoPage(repoName: user.reposUrl)));
                 },
               );
             }),

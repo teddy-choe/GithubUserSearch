@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:search_github/provider/repo_provider.dart';
 import 'package:search_github/provider/search_provider.dart';
 import 'package:search_github/page/search_page.dart';
 
@@ -12,15 +13,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: ChangeNotifierProvider<SearchProvider>(
-            create: (context) => SearchProvider(),
-            child: const SearchPage()),
-      );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<SearchProvider>(
+              create: (context) => SearchProvider()),
+          ChangeNotifierProvider<RepoProvider>(
+              create: (context) => RepoProvider())
+        ],
+        child: MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            home: SearchPage()));
   }
 }
