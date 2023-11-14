@@ -22,8 +22,8 @@ class _SearchPageState extends State<SearchPage> {
           },
           decoration: InputDecoration(
               hintText: 'search user',
-              prefixIcon: Icon(Icons.search, color: Colors.grey),
-              contentPadding: EdgeInsets.all(20),
+              prefixIcon: const Icon(Icons.search, color: Colors.grey),
+              contentPadding: const EdgeInsets.all(20),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
                 borderSide: const BorderSide(color: Colors.grey, width: 1.0),
@@ -37,10 +37,10 @@ class _SearchPageState extends State<SearchPage> {
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _searchBar(),
             state.isLoading
                 ? Expanded(

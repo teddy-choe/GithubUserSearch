@@ -9,17 +9,11 @@ import 'package:search_github/repository/repo_repository.dart';
  */
 class RepoProvider with ChangeNotifier {
   RepoState _state = RepoState(null);
-  var logger = Logger();
-  bool isLoading = false;
-
-  final RepoReposiory repository = RepoReposiory();
-
   RepoState get state => _state;
+  final RepoReposiory repository = RepoReposiory();
+  var logger = Logger();
 
   getRepo(String reposUrl) async {
-    isLoading = true;
-    notifyListeners();
-
     var response = await repository.getMainRepo(reposUrl);
 
     if(response.statusCode == 200) {
@@ -30,9 +24,10 @@ class RepoProvider with ChangeNotifier {
       }
     } else {
       // 에러 처리
+      logger.d("network error");
     }
 
-    isLoading = false;
+    _state.isLoading = false;
     notifyListeners();
   }
 }

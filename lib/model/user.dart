@@ -7,7 +7,7 @@ class User {
   final double score;
   final String starredUrl;
 
-  factory User.fromJson(Map<String, dynamic> json) {
+  factory User.fromJson(Map json) {
     return User(
         id: json['id'],
         login: json['login'],
