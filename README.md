@@ -1,16 +1,13 @@
-# search_github
 
-A new Flutter project.
+An app that displays information using the Github Search API.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Feature
+First Page: List of users by search -> Infinite Scroll, REST api call
+Second Page: The first repository of the clicked user's repository list -> REST api call
+### Environment
+Flutter : 3.13.9
+Dart : 3.1.5
+### Tech tools
+State Management : [Provider (Flutter Favorite)](https://pub.dev/packages/provider)
+Data Class, Json Serialization, Code Generation : [Freezed (Flutter Favorite)](https://pub.dev/packages/freezed#fromjson---classes-with-multiple-constructors)
+Pagination : [Infinite Scroll Pagination (Flutter Favorite)](https://pub.dev/packages/infinite_scroll_pagination)
