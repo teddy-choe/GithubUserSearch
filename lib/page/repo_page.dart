@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +20,8 @@ class RepoPage extends StatefulWidget {
 }
 
 class _RepoPageState extends State<RepoPage> {
+  late final StreamSubscription subscription;
+
   PreferredSizeWidget appBar(BuildContext context) {
     return AppBar(
       leading: IconButton(
@@ -32,6 +37,22 @@ class _RepoPageState extends State<RepoPage> {
     super.initState();
     Future.microtask(
         () => context.read<RepoProvider>().getRepo(widget.user.reposUrl));
+
+    subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      if(result == ConnectivityResult.none) {
+        const snackBar = SnackBar(
+          content: Text('네트워크를 연결해주세요.'),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    subscription.cancel();
   }
 
   @override

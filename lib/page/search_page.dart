@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:search_github/page/search_list_item.dart';
@@ -16,6 +19,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final _scrollController = ScrollController();
   bool isLoadingPage = false;
+  late final StreamSubscription subscription;
 
   @override
   void initState() {
@@ -28,12 +32,23 @@ class _SearchPageState extends State<SearchPage> {
         context.read<SearchProvider>().fetchPage();
       }
     });
+
+    subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      if(result == ConnectivityResult.none) {
+        const snackBar = SnackBar(
+          content: Text('네트워크를 연결해주세요.'),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
     _scrollController.dispose();
+    subscription.cancel();
   }
 
   Widget _searchBar() {
