@@ -12,4 +12,3 @@ An app that displays information using the Github Search API.
 ### Tech tools
 - State Management : [Provider (Flutter Favorite)](https://pub.dev/packages/provider)
 - Data Class, Json Serialization, Code Generation : [Freezed (Flutter Favorite)](https://pub.dev/packages/freezed#fromjson---classes-with-multiple-constructors)
-- Pagination : [Infinite Scroll Pagination (Flutter Favorite)](https://pub.dev/packages/infinite_scroll_pagination)

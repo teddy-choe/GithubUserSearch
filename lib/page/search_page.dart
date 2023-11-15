@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:search_github/page/search_list_item.dart';
 import 'package:search_github/provider/search_provider.dart';
@@ -15,16 +14,25 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final PagingController<int, User> _pagingController =
-      PagingController(firstPageKey: 1);
-  final scrollController = ScrollController();
+  final _scrollController = ScrollController();
+  bool isLoadingPage = false;
 
   @override
   void initState() {
     super.initState();
-    _pagingController.addPageRequestListener((pageKey) {
-      context.read<SearchProvider>().fetchPage(pageKey);
+    _scrollController.addListener(() {
+      var nextPageTrigger = 0.8 * _scrollController.position.maxScrollExtent;
+      if (_scrollController.position.pixels > nextPageTrigger && !isLoadingPage) {
+        isLoadingPage = true;
+        context.read<SearchProvider>().fetchPage();
+      }
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
   }
 
   Widget _searchBar() {
@@ -48,8 +56,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<SearchProvider>().state;
-    _pagingController.value = PagingState(
-        nextPageKey: state.currentPage, error: "", itemList: state.users);
+    isLoadingPage = state.isLoading;
 
     return Scaffold(
       body: Padding(
@@ -64,18 +71,13 @@ class _SearchPageState extends State<SearchPage> {
                 : state.totalCount == 0
                     ? Expanded(child: const Center(child: Text("유저를 검색해주세요.")))
                     : Expanded(
-                        child: PagedListView<int, User>(
-                          pagingController: _pagingController,
-                          builderDelegate: PagedChildBuilderDelegate(
-                              itemBuilder: (context, item, index) =>
-                                  SearchListItem(user: item)),
-                        ),
-                        // child: ListView.builder(
-                        //     itemCount: state.totalCount,
-                        //     itemBuilder: (context, index) {
-                        //       User user = state.users[index];
-                        //       return SearchListItem(user: user);
-                        //     }),
+                        child: ListView.builder(
+                            controller: _scrollController,
+                            itemCount: state.users.length,
+                            itemBuilder: (context, index) {
+                              User user = state.users[index];
+                              return SearchListItem(user: user);
+                            }),
                       ),
             if (_isLoadMore(state))
               const Padding(

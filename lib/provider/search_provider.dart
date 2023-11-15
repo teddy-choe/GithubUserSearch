@@ -17,19 +17,18 @@ class SearchProvider with ChangeNotifier {
 
   search(String query) {
     _state = _state.copyWith(query: query);
-    fetchPage(1);
+    fetchPage();
   }
 
-  fetchPage(int page) async {
+  fetchPage() async {
     logger.d("load more");
-    logger.d("current Page: ${state.currentPage}");
     if (_state.query == "") {
       logger.d("query is empty");
     } else {
       _state = _state.copyWith(isLoading: true);
       notifyListeners();
 
-      final result = await _getSearchState(page);
+      final result = await _getSearchState(_state.currentPage);
       _state = _state.copyWith(
           currentPage: _state.currentPage + 1,
           isLoading: false,
