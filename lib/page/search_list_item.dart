@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:search_github/page/repo_page.dart';
 
-import '../model/user.dart';
+import '../model/user/user.dart';
 
 class SearchListItem extends StatelessWidget {
   const SearchListItem({super.key, required this.user});

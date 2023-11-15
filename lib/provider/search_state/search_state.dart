@@ -1,4 +1,4 @@
-import '../model/user.dart';
+import '../../model/user/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'search_state.freezed.dart';

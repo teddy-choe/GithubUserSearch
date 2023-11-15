@@ -1,4 +1,4 @@
-import 'package:search_github/model/repo.dart';
+import 'package:search_github/model/repo/repo.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'repo_state.freezed.dart';

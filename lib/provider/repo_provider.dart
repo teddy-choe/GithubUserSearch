@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-import 'package:search_github/provider/repo_state.dart';
+import 'package:search_github/provider/repo_state/repo_state.dart';
 import 'package:search_github/repository/repo_repository.dart';
 
-import '../model/repo.dart';
+import '../model/repo/repo.dart';
 
 /**
  * 레포 상세 화면에서 사용

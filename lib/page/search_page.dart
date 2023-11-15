@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:search_github/page/search_list_item.dart';
 import 'package:search_github/provider/search_provider.dart';
 
-import '../model/user.dart';
-import 'package:search_github/provider/search_state.dart';
+import '../model/user/user.dart';
+import 'package:search_github/provider/search_state/search_state.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

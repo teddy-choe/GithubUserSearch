@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
-import 'package:search_github/provider/search_state.dart';
+import 'package:search_github/provider/search_state/search_state.dart';
 import 'package:search_github/repository/search_repository.dart';
 
 /**
