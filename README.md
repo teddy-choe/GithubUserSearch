@@ -12,3 +12,4 @@ An app that displays information using the Github Search API.
 ### Tech tools
 - State Management : [Provider (Flutter Favorite)](https://pub.dev/packages/provider)
 - Data Class, Json Serialization, Code Generation : [Freezed (Flutter Favorite)](https://pub.dev/packages/freezed#fromjson---classes-with-multiple-constructors)
+- Image Cache : [Cache Network Image](https://pub.dev/packages/cached_network_image)

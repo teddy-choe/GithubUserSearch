@@ -22,7 +22,8 @@ class _SearchPageState extends State<SearchPage> {
     super.initState();
     _scrollController.addListener(() {
       var nextPageTrigger = 0.8 * _scrollController.position.maxScrollExtent;
-      if (_scrollController.position.pixels > nextPageTrigger && !isLoadingPage) {
+      if (_scrollController.position.pixels > nextPageTrigger &&
+          !isLoadingPage) {
         isLoadingPage = true;
         context.read<SearchProvider>().fetchPage();
       }
@@ -40,7 +41,15 @@ class _SearchPageState extends State<SearchPage> {
       padding: const EdgeInsets.only(bottom: 15),
       child: TextField(
           onSubmitted: (value) {
-            context.read<SearchProvider>().search(value);
+            if (value == '') {
+              const snackBar = SnackBar(
+                content: Text('검색어를 입력해주세요.'),
+              );
+
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            } else {
+              context.read<SearchProvider>().search(value);
+            }
           },
           decoration: InputDecoration(
               hintText: 'search user',
