@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:search_github/page/repo_page.dart';
@@ -11,7 +12,10 @@ class SearchListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.network(user.avatarUrl),
+      leading: CachedNetworkImage(
+        imageUrl: user.avatarUrl,
+        placeholder: (context, url) => const FlutterLogo()
+      ),
       title: Text(user.login),
       subtitle: Text(user.reposUrl),
       onTap: () {
