@@ -15,7 +15,7 @@ class SearchProvider with ChangeNotifier {
   SearchState get state => _state;
 
   search(String query) {
-    _state = _state.copyWith(query: query);
+    _state = SearchState(query: query);
     fetchPage();
   }
 
