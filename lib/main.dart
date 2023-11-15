@@ -23,9 +23,13 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
             title: 'Search Github',
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+              colorScheme: ColorScheme.fromSwatch(
+                primarySwatch: Colors.orange
+              ),
+              appBarTheme: AppBarTheme(backgroundColor: Colors.orange[300]),
+              scaffoldBackgroundColor: Colors.orange[100],
               useMaterial3: true,
-            ),
+            ).copyWith(),
             home: SearchPage()));
   }
 }

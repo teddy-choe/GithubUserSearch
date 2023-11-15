@@ -21,7 +21,7 @@ class SearchListItem extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) =>
-                RepoPage(repoName: user.reposUrl)));
+                RepoPage(user: user)));
       },
     );
   }

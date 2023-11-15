@@ -68,11 +68,11 @@ class _SearchPageState extends State<SearchPage> {
     isLoadingPage = state.isLoading;
 
     return Scaffold(
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const SizedBox(height: 16),
             _searchBar(),
             _isInitialLoading(state)
                 ? Expanded(
