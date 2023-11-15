@@ -4,13 +4,10 @@ import 'package:search_github/provider/search_state/search_state.dart';
 import 'package:search_github/repository/search_repository.dart';
 import 'package:search_github/util/logger.dart';
 
-/**
- * 검색 화면에서 사용
- */
 class SearchProvider with ChangeNotifier {
   SearchState _state = SearchState();
 
-  final SearchRepository repository = SearchRepository();
+  final SearchRepository _repository = SearchRepository();
 
   SearchState get state => _state;
 
@@ -39,7 +36,7 @@ class SearchProvider with ChangeNotifier {
   }
 
   Future<SearchState> _getSearchState(int page) async {
-    final response = await repository.search(_state.query, page);
+    final response = await _repository.search(_state.query, page);
     return SearchState.fromJson(response.data);
   }
 }

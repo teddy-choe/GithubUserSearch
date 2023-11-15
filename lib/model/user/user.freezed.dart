@@ -26,8 +26,10 @@ mixin _$User {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'avatar_url')
   String get avatarUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'html_url')
-  String get htmlUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'following_url')
+  String get followingUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'followers_url')
+  String get followersUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'repos_url')
   String get reposUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'score')
@@ -49,7 +51,8 @@ abstract class $UserCopyWith<$Res> {
       {@JsonKey(name: 'login') String login,
       @JsonKey(name: 'id') int id,
       @JsonKey(name: 'avatar_url') String avatarUrl,
-      @JsonKey(name: 'html_url') String htmlUrl,
+      @JsonKey(name: 'following_url') String followingUrl,
+      @JsonKey(name: 'followers_url') String followersUrl,
       @JsonKey(name: 'repos_url') String reposUrl,
       @JsonKey(name: 'score') double score,
       @JsonKey(name: 'starred_url') String starredUrl});
@@ -71,7 +74,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? login = null,
     Object? id = null,
     Object? avatarUrl = null,
-    Object? htmlUrl = null,
+    Object? followingUrl = null,
+    Object? followersUrl = null,
     Object? reposUrl = null,
     Object? score = null,
     Object? starredUrl = null,
@@ -89,9 +93,13 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      htmlUrl: null == htmlUrl
-          ? _value.htmlUrl
-          : htmlUrl // ignore: cast_nullable_to_non_nullable
+      followingUrl: null == followingUrl
+          ? _value.followingUrl
+          : followingUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      followersUrl: null == followersUrl
+          ? _value.followersUrl
+          : followersUrl // ignore: cast_nullable_to_non_nullable
               as String,
       reposUrl: null == reposUrl
           ? _value.reposUrl
@@ -120,7 +128,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       {@JsonKey(name: 'login') String login,
       @JsonKey(name: 'id') int id,
       @JsonKey(name: 'avatar_url') String avatarUrl,
-      @JsonKey(name: 'html_url') String htmlUrl,
+      @JsonKey(name: 'following_url') String followingUrl,
+      @JsonKey(name: 'followers_url') String followersUrl,
       @JsonKey(name: 'repos_url') String reposUrl,
       @JsonKey(name: 'score') double score,
       @JsonKey(name: 'starred_url') String starredUrl});
@@ -139,7 +148,8 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? login = null,
     Object? id = null,
     Object? avatarUrl = null,
-    Object? htmlUrl = null,
+    Object? followingUrl = null,
+    Object? followersUrl = null,
     Object? reposUrl = null,
     Object? score = null,
     Object? starredUrl = null,
@@ -157,9 +167,13 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      htmlUrl: null == htmlUrl
-          ? _value.htmlUrl
-          : htmlUrl // ignore: cast_nullable_to_non_nullable
+      followingUrl: null == followingUrl
+          ? _value.followingUrl
+          : followingUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      followersUrl: null == followersUrl
+          ? _value.followersUrl
+          : followersUrl // ignore: cast_nullable_to_non_nullable
               as String,
       reposUrl: null == reposUrl
           ? _value.reposUrl
@@ -184,7 +198,8 @@ class _$UserImpl implements _User {
       {@JsonKey(name: 'login') this.login = '',
       @JsonKey(name: 'id') this.id = 0,
       @JsonKey(name: 'avatar_url') this.avatarUrl = '',
-      @JsonKey(name: 'html_url') this.htmlUrl = '',
+      @JsonKey(name: 'following_url') this.followingUrl = '',
+      @JsonKey(name: 'followers_url') this.followersUrl = '',
       @JsonKey(name: 'repos_url') this.reposUrl = '',
       @JsonKey(name: 'score') this.score = 0,
       @JsonKey(name: 'starred_url') this.starredUrl = ''});
@@ -202,8 +217,11 @@ class _$UserImpl implements _User {
   @JsonKey(name: 'avatar_url')
   final String avatarUrl;
   @override
-  @JsonKey(name: 'html_url')
-  final String htmlUrl;
+  @JsonKey(name: 'following_url')
+  final String followingUrl;
+  @override
+  @JsonKey(name: 'followers_url')
+  final String followersUrl;
   @override
   @JsonKey(name: 'repos_url')
   final String reposUrl;
@@ -216,7 +234,7 @@ class _$UserImpl implements _User {
 
   @override
   String toString() {
-    return 'User(login: $login, id: $id, avatarUrl: $avatarUrl, htmlUrl: $htmlUrl, reposUrl: $reposUrl, score: $score, starredUrl: $starredUrl)';
+    return 'User(login: $login, id: $id, avatarUrl: $avatarUrl, followingUrl: $followingUrl, followersUrl: $followersUrl, reposUrl: $reposUrl, score: $score, starredUrl: $starredUrl)';
   }
 
   @override
@@ -228,7 +246,10 @@ class _$UserImpl implements _User {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.avatarUrl, avatarUrl) ||
                 other.avatarUrl == avatarUrl) &&
-            (identical(other.htmlUrl, htmlUrl) || other.htmlUrl == htmlUrl) &&
+            (identical(other.followingUrl, followingUrl) ||
+                other.followingUrl == followingUrl) &&
+            (identical(other.followersUrl, followersUrl) ||
+                other.followersUrl == followersUrl) &&
             (identical(other.reposUrl, reposUrl) ||
                 other.reposUrl == reposUrl) &&
             (identical(other.score, score) || other.score == score) &&
@@ -238,8 +259,8 @@ class _$UserImpl implements _User {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, login, id, avatarUrl, htmlUrl, reposUrl, score, starredUrl);
+  int get hashCode => Object.hash(runtimeType, login, id, avatarUrl,
+      followingUrl, followersUrl, reposUrl, score, starredUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -260,7 +281,8 @@ abstract class _User implements User {
       {@JsonKey(name: 'login') final String login,
       @JsonKey(name: 'id') final int id,
       @JsonKey(name: 'avatar_url') final String avatarUrl,
-      @JsonKey(name: 'html_url') final String htmlUrl,
+      @JsonKey(name: 'following_url') final String followingUrl,
+      @JsonKey(name: 'followers_url') final String followersUrl,
       @JsonKey(name: 'repos_url') final String reposUrl,
       @JsonKey(name: 'score') final double score,
       @JsonKey(name: 'starred_url') final String starredUrl}) = _$UserImpl;
@@ -277,8 +299,11 @@ abstract class _User implements User {
   @JsonKey(name: 'avatar_url')
   String get avatarUrl;
   @override
-  @JsonKey(name: 'html_url')
-  String get htmlUrl;
+  @JsonKey(name: 'following_url')
+  String get followingUrl;
+  @override
+  @JsonKey(name: 'followers_url')
+  String get followersUrl;
   @override
   @JsonKey(name: 'repos_url')
   String get reposUrl;

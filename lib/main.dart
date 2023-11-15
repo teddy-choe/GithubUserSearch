@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:search_github/provider/repo_provider.dart';
 import 'package:search_github/provider/search_provider.dart';
 import 'package:search_github/page/search_page.dart';
 
@@ -16,16 +15,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<SearchProvider>(
-              create: (context) => SearchProvider()),
-          ChangeNotifierProvider<RepoProvider>(
-              create: (context) => RepoProvider())
+              create: (context) => SearchProvider())
         ],
         child: MaterialApp(
             title: 'Search Github',
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSwatch(
-                primarySwatch: Colors.orange
-              ),
+              colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange),
               appBarTheme: AppBarTheme(backgroundColor: Colors.orange[300]),
               scaffoldBackgroundColor: Colors.orange[100],
               useMaterial3: true,

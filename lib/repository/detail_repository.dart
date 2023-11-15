@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 
 import '../util/network/http_interceptor.dart';
 
-class RepoReposiory {
+class DetailRepository {
   final dio = Dio();
 
   void initDio() {
@@ -19,7 +19,17 @@ class RepoReposiory {
     ]);
   }
 
-  Future<Response> getMainRepo(String reposUrl) async {
+  Future<Response> getFollowers(String followerUrl) async {
+    initDio();
+    return await dio.get(followerUrl);
+  }
+
+  Future<Response> getFollowings(String followingUrl) async {
+    initDio();
+    return await dio.get(followingUrl.replaceAll('{/other_user}', ''));
+  }
+
+  Future<Response> getRepos(String reposUrl) async {
     initDio();
     return await dio.get(reposUrl);
   }
