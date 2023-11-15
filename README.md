@@ -6,6 +6,7 @@ An app that displays information using the Github Search API.
 - Second Page: The first repository of the clicked user's repository list -> REST api call
 
 ### Environment
+- IDE : Android Studio
 - Flutter : 3.13.9
 - Dart : 3.1.5
 
