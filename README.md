@@ -6,7 +6,7 @@ An app that displays information using the Github Search API.
 - Second Page: User's Detail Info, Repo list -> List view, REST api call
 
 ### Environment
-- IDE : Android Studio (2023.1)
+- IDE : Android Studio Giraffe | 2022.3.1 Patch 3
 - Flutter : 3.16.0
 - Dart : 3.2.0
 
