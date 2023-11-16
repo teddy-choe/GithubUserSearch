@@ -7,8 +7,8 @@ An app that displays information using the Github Search API.
 
 ### Environment
 - IDE : Android Studio Giraffe | 2022.3.1 Patch 3
-- Flutter : 3.16.0
-- Dart : 3.2.0
+- Flutter : 3.10.6
+- Dart : 3.0.6
 
 ### Tech tools
 - State Management : [Provider (Flutter Favorite)](https://pub.dev/packages/provider)
