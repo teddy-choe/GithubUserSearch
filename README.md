@@ -6,9 +6,9 @@ An app that displays information using the Github Search API.
 - Second Page: User's Detail Info, Repo list -> List view, REST api call
 
 ### Environment
-- IDE : Android Studio
-- Flutter : 3.13.9
-- Dart : 3.1.5
+- IDE : Android Studio (2023.1)
+- Flutter : 3.16.0
+- Dart : 3.2.0
 
 ### Tech tools
 - State Management : [Provider (Flutter Favorite)](https://pub.dev/packages/provider)
